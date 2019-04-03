@@ -19,7 +19,9 @@ cd C:\npm\node_modules\newman\bin
 foreach ($File in $JsonFiles) {
 	$collectionfilepath = "$SourceFilePath\$File"
 	$environmentfilepath = "$SourceFilePath\$EnvironmentFile"
-	node newman run $collectionfilepath -e $environmentfilepath --disable-unicode 
+	node newman run $collectionfilepath -e $environmentfilepath --disable-unicode --reporters cli,junit --reporter-junit-export OpenWethearMap_Demo.xml 
 }
+
+copy "C:\npm\node_modules\newman\bin\OpenWethearMap_Demo.xml" "C:\Program Files (x86)\Jenkins\workspace\OpenWethearMap-Demo\OpenWethearMap_Demo.xml"
 
 exit $LASTEXITCODE
